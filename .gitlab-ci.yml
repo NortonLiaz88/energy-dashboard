@@ -1,0 +1,50 @@
+image: node:14
+
+stages:
+  - code_quality
+  - test
+  - build
+
+cache:
+  paths:
+    - node_modules/
+
+eslint:
+  image: node:14.19.0
+  stage: code_quality
+  before_script:
+    - npm install
+  script:
+    - npm run lint
+
+build:
+  stage: build
+  cache:
+    key: build-package
+    policy: push
+    paths:
+      - build
+  artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    expire_in: 2 hrs
+    when: on_success
+    paths:
+      - build
+  script:
+    - yarn
+    - yarn build
+
+unit test:
+  stage: test
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  artifacts:
+    paths:
+      - coverage/
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+      junit:
+        - junit.xml
+  script:
+    - yarn && yarn test

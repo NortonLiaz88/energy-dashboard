@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="19" failures="0" errors="0" time="7.263">
+  <testsuite name="AverageScore" errors="0" failures="0" skipped="0" timestamp="2022-09-08T04:07:02" time="5.255" tests="1">
+    <testcase classname="AverageScore should render Score" name="AverageScore should render Score" time="0.08">
+    </testcase>
+  </testsuite>
+  <testsuite name="ScoreLevel" errors="0" failures="0" skipped="0" timestamp="2022-09-08T04:07:02" time="5.257" tests="1">
+    <testcase classname="ScoreLevel should render ScoreLevel" name="ScoreLevel should render ScoreLevel" time="0.103">
+    </testcase>
+  </testsuite>
+  <testsuite name="FeedbackList" errors="0" failures="0" skipped="0" timestamp="2022-09-08T04:07:02" time="5.67" tests="3">
+    <testcase classname="FeedbackList should render list of feedback list in card" name="FeedbackList should render list of feedback list in card" time="0.11">
+    </testcase>
+    <testcase classname="FeedbackList should render list of feedback list in modal" name="FeedbackList should render list of feedback list in modal" time="0.005">
+    </testcase>
+    <testcase classname="FeedbackList should render skeleton" name="FeedbackList should render skeleton" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="FeedbackHeader" errors="0" failures="0" skipped="0" timestamp="2022-09-08T04:07:02" time="5.707" tests="2">
+    <testcase classname="FeedbackHeader should render AverageScore and FiveLevels" name="FeedbackHeader should render AverageScore and FiveLevels" time="0.031">
+    </testcase>
+    <testcase classname="FeedbackHeader should render Skeleton" name="FeedbackHeader should render Skeleton" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="FeedbackCard" errors="0" failures="0" skipped="0" timestamp="2022-09-08T04:07:02" time="5.807" tests="1">
+    <testcase classname="FeedbackCard should render FeedbackCard" name="FeedbackCard should render FeedbackCard" time="0.059">
+    </testcase>
+  </testsuite>
+  <testsuite name="ThrowHttpError" errors="0" failures="0" skipped="0" timestamp="2022-09-08T04:07:02" time="6.449" tests="11">
+    <testcase classname="ThrowHttpError should throw bad request" name="ThrowHttpError should throw bad request" time="0.001">
+    </testcase>
+    <testcase classname="ThrowHttpError should throw unauthorized" name="ThrowHttpError should throw unauthorized" time="0">
+    </testcase>
+    <testcase classname="ThrowHttpError should throw forbidden" name="ThrowHttpError should throw forbidden" time="0.001">
+    </testcase>
+    <testcase classname="ThrowHttpError should throw not found" name="ThrowHttpError should throw not found" time="0">
+    </testcase>
+    <testcase classname="ThrowHttpError should throw conflict" name="ThrowHttpError should throw conflict" time="0">
+    </testcase>
+    <testcase classname="ThrowHttpError should throw invalid format" name="ThrowHttpError should throw invalid format" time="0">
+    </testcase>
+    <testcase classname="ThrowHttpError should throw exceeds file size" name="ThrowHttpError should throw exceeds file size" time="0">
+    </testcase>
+    <testcase classname="ThrowHttpError should throw unprocessable entity" name="ThrowHttpError should throw unprocessable entity" time="0.001">
+    </testcase>
+    <testcase classname="ThrowHttpError should throw geolocation error" name="ThrowHttpError should throw geolocation error" time="0">
+    </testcase>
+    <testcase classname="ThrowHttpError should throw server error" name="ThrowHttpError should throw server error" time="0">
+    </testcase>
+    <testcase classname="ThrowHttpError should throw server error of no axios error" name="ThrowHttpError should throw server error of no axios error" time="0">
+    </testcase>
+  </testsuite>
+</testsuites>
