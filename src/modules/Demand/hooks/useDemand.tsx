@@ -11,7 +11,6 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { SingleValue } from 'react-select';
-import { sub } from 'date-fns';
 import React, {
   createContext,
   ReactNode,
@@ -22,7 +21,6 @@ import React, {
 import { AnalyticParams } from '../../../models/Feedback';
 import api from '../../../services/api';
 import { throwHttpError } from '../../../utils/throwHttpError';
-import { CallsGraph } from '../../ServiceOverview/models/CallsGraph';
 import { IChartData, IChartProps } from '../components/BarChart';
 
 export type OrderBy =

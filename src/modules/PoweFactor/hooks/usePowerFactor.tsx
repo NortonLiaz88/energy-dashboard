@@ -27,8 +27,7 @@ import {
   IMonthFilter,
   ProviderProps,
 } from '../../Demand/hooks/useDemand';
-import { CallsGraph } from '../../ServiceOverview/models/CallsGraph';
-import { IChartData, IChartProps } from '../../Demand/components/BarChart';
+import { IChartData } from '../../Demand/components/BarChart';
 
 const PowerFactorGraphContext = createContext({} as CallsProps);
 
