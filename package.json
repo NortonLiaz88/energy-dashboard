@@ -2,6 +2,9 @@
   "name": "chatbot-frontend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "16.11.22"
+  },
   "dependencies": {
     "@amcharts/amcharts4-geodata": "^4.1.23",
     "@amcharts/amcharts5": "^5.2.19",
