@@ -27,7 +27,6 @@ import {
   IMonthFilter,
   ProviderProps,
 } from '../../Demand/hooks/useDemand';
-import { CallsGraph } from '../../ServiceOverview/models/CallsGraph';
 import { IChartData, IChartProps } from '../../Demand/components/BarChart';
 
 const ConsumptionCurveContext = createContext({} as CallsProps);

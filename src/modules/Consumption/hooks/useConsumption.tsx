@@ -29,7 +29,7 @@ const ConsumptionGraphContext = createContext({} as CallsProps);
 export const ConsumptuionGraphProvider: React.FC<ProviderProps> = ({
   children,
 }) => {
-  const [callsGraph, setCallsGraph] = useState<CallsGraph[]>([]);
+  const [callsGraph, setCallsGraph] = useState<IChartProps[]>([]);
   const [monthFilter, setMonthFilter] =
     useState<SingleValue<IMonthFilter>>(null);
 

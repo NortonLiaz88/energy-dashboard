@@ -60,7 +60,7 @@ export interface IMonthFilter {
 const DemandGraphContext = createContext({} as CallsProps);
 
 export const DemandGraphProvider: React.FC<ProviderProps> = ({ children }) => {
-  const [callsGraph, setCallsGraph] = useState<CallsGraph[]>([]);
+  const [callsGraph, setCallsGraph] = useState<IChartProps[]>([]);
 
   const [monthFilter, setMonthFilter] =
     useState<SingleValue<IMonthFilter>>(null);
