@@ -110,18 +110,6 @@ export const ConsumptionChart: React.FC<IChartProps> = ({
     });
     xAxis.data.setAll(data);
 
-    // const xAxis = chart.xAxes.push(
-    //   am5xy.DateAxis.new(root, {
-    //     maxDeviation: 0,
-    //     baseInterval: {
-    //       timeUnit: 'minute',
-    //       count: 15,
-    //     },
-    //     renderer: am5xy.AxisRendererX.new(root, {}),
-    //     tooltip: am5.Tooltip.new(root, {}),
-    //   }),
-    // );
-
     const yAxis = chart.yAxes.push(
       am5xy.ValueAxis.new(root, {
         renderer: am5xy.AxisRendererY.new(root, {}),
