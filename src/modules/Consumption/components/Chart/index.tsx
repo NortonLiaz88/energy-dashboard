@@ -162,46 +162,6 @@ export const ConsumptionChart: React.FC<IChartProps> = ({
       }),
     );
 
-    function createRange(
-      localSerie: am5.Series,
-      value: number,
-      endValue: number,
-      color: am5.Color,
-    ) {
-      const barRange = series.createAxisRange(
-        yAxis.makeDataItem({
-          value,
-          endValue,
-        }),
-      );
-
-      barRange.columns.template.setAll({
-        fill: color,
-        stroke: color,
-      });
-
-      barRange.axisDataItem?.get('axisFill')?.setAll({
-        fill: color,
-        fillOpacity: 0.05,
-        visible: true,
-      });
-
-      const rangeDataItem = yAxis.makeDataItem({
-        value,
-        endValue,
-      });
-
-      const range = yAxis.createAxisRange(rangeDataItem);
-
-      range?.get('label')?.setAll({
-        fill: am5.color(0xffffff),
-        text: value.toString(),
-        background: am5.RoundedRectangle.new(root, {
-          fill: color,
-        }),
-      });
-    }
-
     // const currentData = generateDatas(50);
     series.data.setAll(data);
 
