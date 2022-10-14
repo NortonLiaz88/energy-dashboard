@@ -2,9 +2,6 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import * as am5 from '@amcharts/amcharts5';
 import * as am5xy from '@amcharts/amcharts5/xy';
-import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
-import am5locales_pt_BR from '@amcharts/amcharts5/locales/pt_BR';
-
 import { Container } from './styles';
 import { IChartProps } from '../../../Demand/components/BarChart';
 
@@ -88,7 +85,7 @@ export const PowerFactorChart: React.FC<IChartProps> = ({
     const cursor = chart.set(
       'cursor',
       am5xy.XYCursor.new(root, {
-        behavior: 'none',
+        behavior: 'zoomX',
       }),
     );
     cursor.lineY.set('visible', false);
@@ -96,26 +93,6 @@ export const PowerFactorChart: React.FC<IChartProps> = ({
     // Generate random data
     const date = new Date();
     date.setHours(0, 0, 0, 0);
-    let value = 100;
-
-    function generateData() {
-      value = Math.round(Math.random() * 10 - 5 + value);
-      am5.time.add(date, 'day', 1);
-      return {
-        date: date.getTime(),
-        value,
-      };
-    }
-
-    function generateDatas(count: number) {
-      // eslint-disable-next-line @typescript-eslint/no-shadow
-      const currentData = [];
-      // eslint-disable-next-line no-plusplus
-      for (let i = 0; i < count; ++i) {
-        currentData.push(generateData());
-      }
-      return currentData;
-    }
 
     const xRenderer = am5xy.AxisRendererX.new(root, {});
     xRenderer.grid.template.set('location', 0.5);

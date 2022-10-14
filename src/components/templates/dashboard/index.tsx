@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ConsumptionModule } from '../../../modules/Consumption';
-import { ConsumptionCurveModule } from '../../../modules/ConsumptionCurve';
 import { DemandModule } from '../../../modules/Demand';
 
 import { PowerFactorModule } from '../../../modules/PoweFactor';
@@ -23,19 +22,16 @@ export const DashboardTemplate: React.FC = () => {
             title="Demanda"
             children={<DemandModule />}
             expandFunction={() => null}
-            fade
           />
           <Card
             title="Consumo"
             children={<ConsumptionModule />}
             expandFunction={() => null}
-            fade
           />
           <Card
             title="Fator de Potência"
             children={<PowerFactorModule />}
             expandFunction={() => null}
-            fade
           />
           {/* */}
           {/*

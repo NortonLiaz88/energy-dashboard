@@ -58,6 +58,7 @@
         "ignorePropertyModificationsFor": ["draft", "sketch", "outline"]
       }
     ],
+    "react/require-default-props": "off",
     "@typescript-eslint/no-shadow": ["error"],
     "@typescript-eslint/no-use-before-define": ["error"],
     "react/react-in-jsx-scope": "off"

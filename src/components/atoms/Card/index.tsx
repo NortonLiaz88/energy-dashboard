@@ -1,18 +1,11 @@
 import React, { ReactNode } from 'react';
-import {
-  CardWrapper,
-  TitleWrapper,
-  Title,
-  ExpandIcon,
-  FadeCard,
-} from './styles';
+import { CardWrapper, TitleWrapper, Title, ExpandIcon } from './styles';
 
 export interface CardProps {
   title?: string;
   children: ReactNode;
   expands?: boolean;
   expandFunction(): void;
-  fade?: boolean;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -20,7 +13,6 @@ const Card: React.FC<CardProps> = ({
   children,
   expands = false,
   expandFunction,
-  fade = false,
 }: CardProps) => {
   return (
     <CardWrapper>

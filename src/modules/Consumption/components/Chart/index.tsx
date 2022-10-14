@@ -48,12 +48,12 @@ export const ConsumptionChart: React.FC<IChartProps> = ({
 
     // Add legend
     // https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
-    const legend = chart.children.push(
-      am5.Legend.new(root, {
-        centerX: am5.p50,
-        x: am5.p50,
-      }),
-    );
+    // const legend = chart.children.push(
+    //   am5.Legend.new(root, {
+    //     centerX: am5.p50,
+    //     x: am5.p50,
+    //   }),
+    // );
 
     const cursor = chart.set(
       'cursor',
@@ -145,7 +145,7 @@ export const ConsumptionChart: React.FC<IChartProps> = ({
       }),
     );
 
-    series?.columns.template.adapters.add('fill', function (fill, target) {
+    series?.columns.template.adapters.add('fill', (fill, target) => {
       const dataItem = target?.dataItem;
       const contextData: IChartData = dataItem?.dataContext as IChartData;
       if (contextData.post === 'PEAK') {
@@ -162,9 +162,69 @@ export const ConsumptionChart: React.FC<IChartProps> = ({
       }),
     );
 
+    function createRange(
+      localSerie: am5.Series,
+      value: number,
+      endValue: number,
+      color: am5.Color,
+    ) {
+      const barRange = series.createAxisRange(
+        yAxis.makeDataItem({
+          value,
+          endValue,
+        }),
+      );
+
+      barRange.columns.template.setAll({
+        fill: color,
+        stroke: color,
+      });
+
+      barRange.axisDataItem?.get('axisFill')?.setAll({
+        fill: color,
+        fillOpacity: 0.05,
+        visible: true,
+      });
+
+      const rangeDataItem = yAxis.makeDataItem({
+        value,
+        endValue,
+      });
+
+      const range = yAxis.createAxisRange(rangeDataItem);
+
+      range?.get('label')?.setAll({
+        fill: am5.color(0xffffff),
+        text: value.toString(),
+        background: am5.RoundedRectangle.new(root, {
+          fill: color,
+        }),
+      });
+    }
+
     // const currentData = generateDatas(50);
     series.data.setAll(data);
-    legend.data.setAll(chart.series.values);
+
+    const legend = chart.children.push(
+      am5.Legend.new(root, {
+        nameField: 'name',
+        fillField: 'color',
+        strokeField: 'color',
+        centerX: am5.percent(50),
+        x: am5.percent(50),
+      }),
+    );
+
+    legend.data.setAll([
+      {
+        name: 'Ponta',
+        color: am5.color('#EAE151'),
+      },
+      {
+        name: 'Fora Ponta',
+        color: am5.color('#67b6dc'),
+      },
+    ]);
 
     // Make stuff animate on load
     // https://www.amcharts.com/docs/v5/concepts/animations/

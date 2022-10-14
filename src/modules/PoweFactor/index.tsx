@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Select, { SelectInstance, SingleValue } from 'react-select';
+import React from 'react';
+import Select from 'react-select';
 import { MonthOptions } from '../../utils/constants';
 import { IMonthFilter } from '../Demand/hooks/useDemand';
 import { PowerFactorChart } from './components/Chart';

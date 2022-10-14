@@ -90,7 +90,7 @@ export const DemandChart: React.FC = () => {
 
     // Add series
     // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
-    function makeSeries(name: string, field: string) {
+    const makeSeries = (name: string, field: string) => {
       const series = chart.series.push(
         am5xy.ColumnSeries.new(root, {
           name,
@@ -113,7 +113,7 @@ export const DemandChart: React.FC = () => {
       // https://www.amcharts.com/docs/v5/concepts/animations/
       series.appear();
 
-      series.bullets.push(function () {
+      series.bullets.push(() => {
         return am5.Bullet.new(root, {
           locationY: 0,
           sprite: am5.Label.new(root, {
@@ -127,7 +127,7 @@ export const DemandChart: React.FC = () => {
       });
 
       legend.data.push(series);
-    }
+    };
 
     chart.set(
       'scrollbarX',
