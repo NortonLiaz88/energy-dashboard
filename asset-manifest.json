@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/energy-dashboard/static/js/main.51a90a1f.js",
+    "static/js/787.14912b7b.chunk.js": "/energy-dashboard/static/js/787.14912b7b.chunk.js",
+    "static/media/uea-logo.png": "/energy-dashboard/static/media/uea-logo.a9eb84eaf6aad63c8087.png",
+    "index.html": "/energy-dashboard/index.html",
+    "main.51a90a1f.js.map": "/energy-dashboard/static/js/main.51a90a1f.js.map",
+    "787.14912b7b.chunk.js.map": "/energy-dashboard/static/js/787.14912b7b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.51a90a1f.js"
+  ]
+}
