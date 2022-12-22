@@ -221,7 +221,7 @@ export const DemandBarChart: React.FC<IChartProps> = ({
 
     yAxis.createAxisRange(rangeDataItem);
 
-    createRange(series, 200, 9999999, am5.color(0xff621f));
+    createRange(series, 10000, 9999999, am5.color(0xff621f));
 
     const legend = chart.children.push(
       am5.Legend.new(root, {
