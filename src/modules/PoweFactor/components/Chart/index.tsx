@@ -17,59 +17,6 @@ export const PowerFactorChart: React.FC<IChartProps> = ({
     root.utc = true;
     root.dateFormatter.set('dateFormat', 'dd-MM-yy HH:mm');
 
-    // function createRange(value: number, endValue: number, color: am5.Color) {
-    //   const rangeDataItem = yAxis.makeDataItem({
-    //     value,
-    //     endValue,
-    //   });
-
-    //   const range = yAxis.createAxisRange(rangeDataItem);
-
-    //   if (endValue) {
-    //     range?.get('axisFill')?.setAll({
-    //       fill: color,
-    //       fillOpacity: 0.2,
-    //       visible: true,
-    //     });
-
-    //     range?.get('label')?.setAll({
-    //       fill: am5.color(0xffffff),
-    //       text: `${value}-${endValue}`,
-    //       location: 1,
-    //       background: am5.RoundedRectangle.new(root, {
-    //         fill: color,
-    //       }),
-    //     });
-    //   } else {
-    //     range?.get('label')?.setAll({
-    //       fill: am5.color(0xffffff),
-    //       text: value.toString(),
-    //       background: am5.RoundedRectangle.new(root, {
-    //         fill: color,
-    //       }),
-    //     });
-    //   }
-
-    //   range?.get('grid')?.setAll({
-    //     stroke: color,
-    //     strokeOpacity: 1,
-    //     location: 1,
-    //   });
-
-    //   // range?.fills?.template.setAll({
-    //   //   fill: color,
-    //   //   fillOpacity: 0.8,
-    //   //   visible: true,
-    //   // });
-
-    //   rangeDataItem?.get('axisFill')?.setAll({
-    //     fill: color,
-    //     fillOpacity: 0.05,
-    //     visible: true,
-    //   });
-    // }
-    // createRange(0.92, 9999, am5.color(0xff621f));
-
     const chart = root.container.children.push(
       am5xy.XYChart.new(root, {
         panX: true,
@@ -123,6 +70,61 @@ export const PowerFactorChart: React.FC<IChartProps> = ({
     );
 
     yAxis.data.setAll(data);
+
+    function createRange(value: number, endValue: number, color: am5.Color) {
+      const rangeDataItem = yAxis.makeDataItem({
+        value,
+        endValue,
+      });
+
+      const range = yAxis.createAxisRange(rangeDataItem);
+
+      if (endValue) {
+        range?.get('axisFill')?.setAll({
+          fill: color,
+          fillOpacity: 0.2,
+          visible: true,
+        });
+
+        range?.get('label')?.setAll({
+          fill: am5.color(0xffffff),
+          text: `${value}-${endValue}`,
+          location: 1,
+          background: am5.RoundedRectangle.new(root, {
+            fill: color,
+          }),
+        });
+      } else {
+        range?.get('label')?.setAll({
+          fill: am5.color(0xffffff),
+          text: value.toString(),
+          background: am5.RoundedRectangle.new(root, {
+            fill: color,
+          }),
+        });
+      }
+
+      range?.get('grid')?.setAll({
+        stroke: color,
+        strokeOpacity: 1,
+        location: 1,
+      });
+
+      // range?.fills?.template.setAll({
+      //   fill: color,
+      //   fillOpacity: 0.8,
+
+      //   visible: true,
+      // });
+
+      rangeDataItem?.get('axisFill')?.setAll({
+        fill: color,
+        fillOpacity: 0.05,
+        visible: true,
+      });
+    }
+
+    createRange(0.91, -9999, am5.color(0xff621f));
 
     // Add series
     // https://www.amcharts.com/docs/v5/charts/xy-chart/series/

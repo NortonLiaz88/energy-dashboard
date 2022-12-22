@@ -14,7 +14,7 @@ const Header: React.FC = () => {
         width={96}
       />
       <RoutesWrapper>
-        <NavigationLink key="primary" path="/dashboard" name="Dashboard" />
+        <NavigationLink key="primary" path="/" name="Dashboard" />
       </RoutesWrapper>
     </HeaderWrapper>
   );
