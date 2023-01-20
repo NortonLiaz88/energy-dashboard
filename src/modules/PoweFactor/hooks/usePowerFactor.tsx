@@ -59,12 +59,29 @@ export const PowerFactorGraphProvider: React.FC<ProviderProps> = ({
     },
     [],
   );
+
+
+  const getAllChartData = useCallback(async (): Promise<IChartData[]> => {
+    try {
+      const { data } = await api.get<IChartData[]>('/power-factor/all');
+      data.map(ele => (ele.datetime = new Date(ele.datetime)).getTime());
+      return data;
+    } catch (err) {
+      return throwHttpError(err);
+    }
+  }, []);
+
+
   const { data, isFetching, isError } = useQuery(
     ['power-factor-page', callsGraph, monthFilter],
     // eslint-disable-next-line no-unsafe-optional-chaining, @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
-    () => getChartData({ search: monthFilter?.value! ?? 8 }),
+    () => monthFilter?.value! === 'all'
+    ? getAllChartData()
+    : getChartData({ month: +monthFilter?.value! ?? 8 }),
     {
       keepPreviousData: true,
+      retry: false
+
       // refetchInterval: INTERVAL_REFETCH_MS,
     },
   );

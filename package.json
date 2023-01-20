@@ -2,7 +2,6 @@
   "name": "massa-dados-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nortonliaz88.github.io/energy-dashboard",
   "dependencies": {
     "@amcharts/amcharts4-geodata": "^4.1.23",
     "@amcharts/amcharts5": "^5.2.19",
@@ -41,6 +40,7 @@
     "precommit": "exec < /dev/tty && git-cz --hook",
     "docker-build": "docker build --no-cache -t sample:prod . ",
     "docker-start": "docker run -v ${PWD}:/app -v /app/node_modules -p 8080:80 --rm sample:prod",
+    "docker-start-dev": "docker run -it -v ${PWD}:/app -v /app/node_modules -p 3001:3000 --rm sample:dev",
     "predeploy": "npm run build",
      "deploy": "gh-pages -d build"
   },

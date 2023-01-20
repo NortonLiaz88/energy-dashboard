@@ -2,14 +2,11 @@ version: '3.7'
 services:
     app:
         container_name: dockerized-react-app
-        build:
-            context: .
-            dockerfile: Dockerfile
+        build: .
+        restart: always
         volumes:
             - '.:/app'
             - '/app/node_modules'
-        stdin_open: true
         ports:
-            - '8080:80'
-        environment:
-            - NODE_ENV=development
+            - '3000:3000'
+
