@@ -87,12 +87,25 @@ export const DemandGraphProvider: React.FC<ProviderProps> = ({ children }) => {
     [],
   );
 
+  const getAllChartData = useCallback(async (): Promise<IChartData[]> => {
+    try {
+      const { data } = await api.get<IChartData[]>('/demand/all');
+      data.map(ele => (ele.datetime = new Date(ele.datetime)).getTime());
+      return data;
+    } catch (err) {
+      return throwHttpError(err);
+    }
+  }, []);
+
   const { data, isFetching, isError } = useQuery(
-    ['calls-page', callsGraph, monthFilter],
-    // eslint-disable-next-line no-unsafe-optional-chaining, @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
-    () => getChartData({ month: +monthFilter?.value! ?? 8 }),
+    ['demand-page', callsGraph, monthFilter],
+    () =>
+      monthFilter?.value! === 'all'
+        ? getAllChartData()
+        : getChartData({ month: +monthFilter?.value! ?? 8 }),
     {
       keepPreviousData: true,
+      retry: false
       // refetchInterval: INTERVAL_REFETCH_MS,
     },
   );

@@ -2,7 +2,6 @@
   "name": "massa-dados-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nortonliaz88.github.io/energy-dashboard",
   "dependencies": {
     "@amcharts/amcharts4-geodata": "^4.1.23",
     "@amcharts/amcharts5": "^5.2.19",

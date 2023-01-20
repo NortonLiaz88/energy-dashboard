@@ -7,4 +7,5 @@ export const MonthOptions = [
   { value: '6', label: 'Junho' },
   { value: '7', label: 'Julho' },
   { value: '8', label: 'Agosto' },
+  { value: 'all', label: 'Todos' },
 ];
