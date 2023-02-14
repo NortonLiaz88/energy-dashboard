@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import { CustomCSVLink } from '../../components/atoms/CSVLink';
 import { MonthOptions } from '../../utils/constants';
 import { IMonthFilter } from '../Demand/hooks/useDemand';
 import { PowerFactorChart } from './components/Chart';
@@ -17,6 +18,8 @@ export const PowerFactorModule: React.FC = () => {
         onChange={value => handleChange(value as IMonthFilter)}
       />
       <PowerFactorChart data={callsGraph} />
+      <CustomCSVLink data={callsGraph}>Download CSV</CustomCSVLink>
+
     </ModuleWrapper>
   );
 };

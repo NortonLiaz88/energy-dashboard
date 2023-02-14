@@ -3,11 +3,11 @@ import React, { useLayoutEffect, useRef } from 'react';
 import * as am5 from '@amcharts/amcharts5';
 import * as am5xy from '@amcharts/amcharts5/xy';
 import { Container } from './styles';
-import { IChartProps } from '../../../Demand/components/BarChart';
+import { IChart } from '../../../../models/ChartData';
 
-export const PowerFactorChart: React.FC<IChartProps> = ({
+export const PowerFactorChart: React.FC<IChart> = ({
   data,
-}: IChartProps) => {
+}: IChart) => {
   const amChartRef = useRef({} as am5.Root);
   const chartId = 'powerFactorChart';
 
@@ -51,7 +51,7 @@ export const PowerFactorChart: React.FC<IChartProps> = ({
     });
     const xAxis = chart.xAxes.push(
       am5xy.CategoryAxis.new(root, {
-        categoryField: 'datetime',
+        categoryField: 'date',
         renderer: xRenderer,
         tooltip: am5.Tooltip.new(root, {}),
       }),
@@ -134,9 +134,9 @@ export const PowerFactorChart: React.FC<IChartProps> = ({
         xAxis,
         yAxis,
         valueYField: 'value',
-        categoryXField: 'datetime',
+        categoryXField: 'date',
         tooltip: am5.Tooltip.new(root, {
-          labelText: 'Valor:{value}\nData:{datetime}',
+          labelText: 'Valor:{value}\nData:{date}',
         }),
       }),
     );

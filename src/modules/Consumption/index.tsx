@@ -6,6 +6,7 @@ import { IMonthFilter } from '../Demand/hooks/useDemand';
 
 import { useConsumptionGraph } from './hooks/useConsumption';
 import { ModuleWrapper } from './styles';
+import { CustomCSVLink } from '../../components/atoms/CSVLink';
 
 export const ConsumptionModule: React.FC = () => {
   const { handleChange, monthFilter, callsGraph } = useConsumptionGraph();
@@ -18,6 +19,8 @@ export const ConsumptionModule: React.FC = () => {
         onChange={value => handleChange(value as IMonthFilter)}
       />
       <ConsumptionChart data={callsGraph} />
+      <CustomCSVLink data={callsGraph}>Download CSV</CustomCSVLink>
+
     </ModuleWrapper>
   );
 };

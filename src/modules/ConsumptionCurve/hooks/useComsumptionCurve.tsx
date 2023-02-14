@@ -27,14 +27,14 @@ import {
   IMonthFilter,
   ProviderProps,
 } from '../../Demand/hooks/useDemand';
-import { IChartData, IChartProps } from '../../Demand/components/BarChart';
+import { IChart, IChartData } from '../../../models/ChartData';
 
 const ConsumptionCurveContext = createContext({} as CallsProps);
 
 export const ConsumptionCurveProvider: React.FC<ProviderProps> = ({
   children,
 }) => {
-  const [callsGraph, setCallsGraph] = useState<IChartProps[]>([]);
+  const [callsGraph, setCallsGraph] = useState<IChart[]>([]);
   const [monthFilter, setMonthFilter] =
     useState<SingleValue<IMonthFilter>>(null);
 

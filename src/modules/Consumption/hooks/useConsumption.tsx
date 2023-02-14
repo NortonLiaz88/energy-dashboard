@@ -12,7 +12,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { SingleValue } from 'react-select';
 
-import { sub } from 'date-fns';
 import React, { createContext, useCallback, useContext, useState } from 'react';
 import { AnalyticParams } from '../../../models/Feedback';
 import api from '../../../services/api';
@@ -22,14 +21,16 @@ import {
   IMonthFilter,
   ProviderProps,
 } from '../../Demand/hooks/useDemand';
-import { IChartData, IChartProps } from '../../Demand/components/BarChart';
+import { IChart, IChartData } from '../../../models/ChartData';
+import { parseConsumptionRequest } from '../utils/parseDataToChart';
+import { IRequestData } from '../../../models/RequestData';
 
 const ConsumptionGraphContext = createContext({} as CallsProps);
 
 export const ConsumptuionGraphProvider: React.FC<ProviderProps> = ({
   children,
 }) => {
-  const [callsGraph, setCallsGraph] = useState<IChartProps[]>([]);
+  const [callsGraph, setCallsGraph] = useState<IChart[]>([]);
   const [monthFilter, setMonthFilter] =
     useState<SingleValue<IMonthFilter>>(null);
 
@@ -43,11 +44,12 @@ export const ConsumptuionGraphProvider: React.FC<ProviderProps> = ({
         const params: AnalyticParams = {
           ...(month ? { month } : { month: 8 }),
         };
-        const { data } = await api.get<IChartData[]>('/consumption', {
+        const { data } = await api.get<IRequestData[]>('/consumption', {
           params,
         });
         data.map(ele => (ele.datetime = new Date(ele.datetime)).getTime());
-        return data;
+        const parsedData = parseConsumptionRequest(data)
+        return parsedData;
       } catch (err) {
         return throwHttpError(err);
       }
@@ -57,9 +59,11 @@ export const ConsumptuionGraphProvider: React.FC<ProviderProps> = ({
 
   const getAllChartData = useCallback(async (): Promise<IChartData[]> => {
     try {
-      const { data } = await api.get<IChartData[]>('/consumption/all');
+      const { data } = await api.get<IRequestData[]>('/consumption/by-month');
       data.map(ele => (ele.datetime = new Date(ele.datetime)).getTime());
-      return data;
+      const parsedData = parseConsumptionRequest(data)
+
+      return parsedData;
     } catch (err) {
       return throwHttpError(err);
     }

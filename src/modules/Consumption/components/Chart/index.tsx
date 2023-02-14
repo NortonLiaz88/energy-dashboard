@@ -5,11 +5,11 @@ import * as am5xy from '@amcharts/amcharts5/xy';
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import am5locales_pt_BR from '@amcharts/amcharts5/locales/pt_BR';
 import { Container } from './styles';
-import { IChartData, IChartProps } from '../../../Demand/components/BarChart';
+import { IChart, IChartData } from '../../../../models/ChartData';
 
-export const ConsumptionChart: React.FC<IChartProps> = ({
+export const ConsumptionChart: React.FC<IChart> = ({
   data,
-}: IChartProps) => {
+}: IChart) => {
   const amChartRef = useRef({} as am5.Root);
   const chartId = 'consumptionChart';
 
@@ -98,7 +98,7 @@ export const ConsumptionChart: React.FC<IChartProps> = ({
     });
     const xAxis = chart.xAxes.push(
       am5xy.CategoryAxis.new(root, {
-        categoryField: 'datetime',
+        categoryField: 'date',
         renderer: xRenderer,
         tooltip: am5.Tooltip.new(root, {}),
       }),
@@ -126,9 +126,9 @@ export const ConsumptionChart: React.FC<IChartProps> = ({
         xAxis,
         yAxis,
         valueYField: 'value',
-        categoryXField: 'datetime',
+        categoryXField: 'date',
         tooltip: am5.Tooltip.new(root, {
-          labelText: 'Valor:{value}\nData:{datetime}',
+          labelText: 'Valor:{value}\nData:{date}',
         }),
       }),
     );

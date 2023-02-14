@@ -27,7 +27,9 @@ import {
   IMonthFilter,
   ProviderProps,
 } from '../../Demand/hooks/useDemand';
-import { IChartData } from '../../Demand/components/BarChart';
+import { IChartData } from '../../../models/ChartData';
+import { parsePowerFactorRequest } from '../utils/parseDataToChart';
+import { IRequestData } from '../../../models/RequestData';
 
 const PowerFactorGraphContext = createContext({} as CallsProps);
 
@@ -48,11 +50,13 @@ export const PowerFactorGraphProvider: React.FC<ProviderProps> = ({
         const params: AnalyticParams = {
           ...(month ? { month } : { month: 8 }),
         };
-        const { data } = await api.get<IChartData[]>('/power-factor', {
+        const { data } = await api.get<IRequestData[]>('/power-factor', {
           params,
         });
         data.map(ele => (ele.datetime = new Date(ele.datetime)).getTime());
-        return data;
+        const parsedData = parsePowerFactorRequest(data)
+
+        return parsedData;
       } catch (err) {
         return throwHttpError(err);
       }
@@ -63,9 +67,11 @@ export const PowerFactorGraphProvider: React.FC<ProviderProps> = ({
 
   const getAllChartData = useCallback(async (): Promise<IChartData[]> => {
     try {
-      const { data } = await api.get<IChartData[]>('/power-factor/all');
+      const { data } = await api.get<IRequestData[]>('/power-factor/by-month');
       data.map(ele => (ele.datetime = new Date(ele.datetime)).getTime());
-      return data;
+      const parsedData = parsePowerFactorRequest(data)
+
+      return parsedData;
     } catch (err) {
       return throwHttpError(err);
     }

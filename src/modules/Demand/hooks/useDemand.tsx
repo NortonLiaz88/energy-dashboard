@@ -21,7 +21,10 @@ import React, {
 import { AnalyticParams } from '../../../models/Feedback';
 import api from '../../../services/api';
 import { throwHttpError } from '../../../utils/throwHttpError';
-import { IChartData, IChartProps } from '../components/BarChart';
+// import { IChartData, IChartProps } from '../components/BarChart';
+import { parseDemandaRequest } from '../utils/parseDataToChart';
+import { IRequestData } from '../../../models/RequestData';
+import { IChart, IChartData } from '../../../models/ChartData';
 
 export type OrderBy =
   | 'user'
@@ -60,7 +63,7 @@ export interface IMonthFilter {
 const DemandGraphContext = createContext({} as CallsProps);
 
 export const DemandGraphProvider: React.FC<ProviderProps> = ({ children }) => {
-  const [callsGraph, setCallsGraph] = useState<IChartProps[]>([]);
+  const [callsGraph, setCallsGraph] = useState<IChart[]>([]);
 
   const [monthFilter, setMonthFilter] =
     useState<SingleValue<IMonthFilter>>(null);
@@ -75,11 +78,13 @@ export const DemandGraphProvider: React.FC<ProviderProps> = ({ children }) => {
         const params: AnalyticParams = {
           ...(month ? { month } : { month: 8 }),
         };
-        const { data } = await api.get<IChartData[]>('/demand', {
+        const { data } = await api.get<IRequestData[]>('/demand', {
           params,
         });
         data.map(ele => (ele.datetime = new Date(ele.datetime)).getTime());
-        return data;
+        const parsedData = parseDemandaRequest(data)
+
+        return parsedData;
       } catch (err) {
         return throwHttpError(err);
       }
@@ -89,9 +94,9 @@ export const DemandGraphProvider: React.FC<ProviderProps> = ({ children }) => {
 
   const getAllChartData = useCallback(async (): Promise<IChartData[]> => {
     try {
-      const { data } = await api.get<IChartData[]>('/demand/all');
-      data.map(ele => (ele.datetime = new Date(ele.datetime)).getTime());
-      return data;
+      const { data } = await api.get<IRequestData[]>('/demand/by-month');
+      const parsedData = parseDemandaRequest(data)
+      return parsedData;
     } catch (err) {
       return throwHttpError(err);
     }
