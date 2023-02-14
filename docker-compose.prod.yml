@@ -10,5 +10,5 @@ services:
             - '.:/app'
             - '/app/node_modules'
         ports:
-            - '8800:80'
+            - '3000:3000'
 
