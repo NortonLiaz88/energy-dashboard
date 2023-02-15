@@ -1,5 +1,4 @@
 import React from 'react';
-import { CSVLink } from 'react-csv';
 import Select from 'react-select';
 import { CustomCSVLink } from '../../components/atoms/CSVLink';
 import { MonthOptions } from '../../utils/constants';
@@ -19,7 +18,12 @@ export const DemandModule: React.FC = () => {
         onChange={value => handleChange(value as IMonthFilter)}
       />
       <DemandBarChart data={callsGraph} />
-      <CustomCSVLink data={callsGraph}>Download CSV</CustomCSVLink>
+      <CustomCSVLink
+        data={callsGraph}
+        name={monthFilter?.label.toLocaleLowerCase()}
+      >
+        Download CSV
+      </CustomCSVLink>
     </ModuleWrapper>
   );
 };

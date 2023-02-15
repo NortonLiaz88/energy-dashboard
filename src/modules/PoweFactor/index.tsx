@@ -18,8 +18,12 @@ export const PowerFactorModule: React.FC = () => {
         onChange={value => handleChange(value as IMonthFilter)}
       />
       <PowerFactorChart data={callsGraph} />
-      <CustomCSVLink data={callsGraph}>Download CSV</CustomCSVLink>
-
+      <CustomCSVLink
+        data={callsGraph}
+        name={monthFilter?.label.toLocaleLowerCase()}
+      >
+        Download CSV
+      </CustomCSVLink>
     </ModuleWrapper>
   );
 };

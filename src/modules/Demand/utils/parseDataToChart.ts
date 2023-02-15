@@ -30,6 +30,7 @@ export const parseDemandaRequest = (
       date: date,
       value: ele.value,
       post: ele.post,
+      limit: 1000,
     };
     return newData;
   });

@@ -30,6 +30,7 @@ export const parsePowerFactorRequest = (
       date: date,
       value: ele.value,
       post: ele.post,
+      limit: 0.92
     };
     return newData;
   });
